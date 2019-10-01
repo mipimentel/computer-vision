@@ -11,3 +11,12 @@ To install the dependencies run:
 ```
 $ pip install -r requirements.txt
 ```
+
+## Contribution
+
+If you want to contribute to te project please install [pre-commit](https://pre-commit.com/) and on the root of the root
+ of the repository run:
+
+```
+$ pre-commit install
+```

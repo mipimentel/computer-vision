@@ -23,9 +23,9 @@ def show(image):
     # check if image has color
     if len(image.shape) == 3:
         # Show image, with nearest neighbour interpolation
-        plt.imshow(image, interpolation='nearest')
+        plt.imshow(image, interpolation="nearest")
     else:
-        plt.imshow(image, interpolation='nearest', cmap='gray')
+        plt.imshow(image, interpolation="nearest", cmap="gray")
     plt.tight_layout()
     plt.show()
 
@@ -48,15 +48,15 @@ def show_rgb(image):
     plt.figure(figsize=(12, 4))
     plt.subplot(131)
     plt.axis("off")
-    plt.title('R')
+    plt.title("R")
     plt.imshow(images[0])
     plt.subplot(132)
-    plt.axis('off')
+    plt.axis("off")
     plt.imshow(images[1])
-    plt.title('G')
+    plt.title("G")
     plt.subplot(133)
-    plt.axis('off')
-    plt.title('B')
+    plt.axis("off")
+    plt.title("B")
     plt.imshow(images[2])
     plt.tight_layout()
     plt.show()
@@ -83,15 +83,15 @@ def show_lab(image):
     plt.figure(figsize=(12, 4))
     plt.subplot(131)
     plt.axis("off")
-    plt.title('L')
+    plt.title("L")
     plt.imshow(images[0])
     plt.subplot(132)
-    plt.axis('off')
+    plt.axis("off")
     plt.imshow(images[1])
-    plt.title('a')
+    plt.title("a")
     plt.subplot(133)
-    plt.axis('off')
-    plt.title('b')
+    plt.axis("off")
+    plt.title("b")
     plt.imshow(images[2])
     plt.tight_layout()
     plt.show()
@@ -119,15 +119,15 @@ def show_hsv(image):
     plt.figure(figsize=(12, 4))
     plt.subplot(131)
     plt.axis("off")
-    plt.title('Hue')
+    plt.title("Hue")
     plt.imshow(images[0])
     plt.subplot(132)
-    plt.axis('off')
+    plt.axis("off")
     plt.imshow(images[1])
-    plt.title('Saturation')
+    plt.title("Saturation")
     plt.subplot(133)
-    plt.axis('off')
-    plt.title('Value')
+    plt.axis("off")
+    plt.title("Value")
     plt.imshow(images[2])
     plt.tight_layout()
     plt.show()
@@ -142,16 +142,16 @@ def show_sobel(image):
     plt.figure(figsize=(12, 4))
     plt.subplot(131)
     plt.axis("off")
-    plt.title('image')
-    plt.imshow(gray, cmap='gray')
+    plt.title("image")
+    plt.imshow(gray, cmap="gray")
     plt.subplot(132)
-    plt.axis('off')
-    plt.imshow(dx, cmap='gray')
-    plt.title(r'$\frac{dI}{dx}$')
+    plt.axis("off")
+    plt.imshow(dx, cmap="gray")
+    plt.title(r"$\frac{dI}{dx}$")
     plt.subplot(133)
-    plt.axis('off')
-    plt.title(r'$\frac{dI}{dy}$')
-    plt.imshow(dy, cmap='gray')
+    plt.axis("off")
+    plt.title(r"$\frac{dI}{dy}$")
+    plt.imshow(dy, cmap="gray")
     plt.tight_layout()
     plt.show()
 
@@ -163,12 +163,14 @@ def plot_3dRGB(image):
     fig = plt.figure()  # figsize=(15, 15)
     axis = fig.add_subplot(1, 1, 1, projection="3d")
     # Reshape it
-    pixel_colors = image.reshape((np.shape(image)[0]*np.shape(image)[1], 3))
-    norm = colors.Normalize(vmin=-1., vmax=1.)
+    pixel_colors = image.reshape((np.shape(image)[0] * np.shape(image)[1], 3))
+    norm = colors.Normalize(vmin=-1.0, vmax=1.0)
     # Normalize for matplotlib
     norm.autoscale(pixel_colors)
     pixel_colors = norm(pixel_colors).tolist()
-    axis.scatter(r.flatten(), g.flatten(), b.flatten(), facecolors=pixel_colors, marker=".")
+    axis.scatter(
+        r.flatten(), g.flatten(), b.flatten(), facecolors=pixel_colors, marker="."
+    )
     axis.set_xlabel("Red")
     axis.set_ylabel("Green")
     axis.set_zlabel("Blue")
@@ -182,14 +184,16 @@ def plot_3dHSV(image):
     fig = plt.figure()  # figsize=(15, 15)
     axis = fig.add_subplot(1, 1, 1, projection="3d")
     # Reshape it
-    pixel_colors = image.reshape((np.shape(image)[0]*np.shape(image)[1], 3))
-    norm = colors.Normalize(vmin=-1., vmax=1.)
+    pixel_colors = image.reshape((np.shape(image)[0] * np.shape(image)[1], 3))
+    norm = colors.Normalize(vmin=-1.0, vmax=1.0)
     # Normalize
     norm.autoscale(pixel_colors)
     pixel_colors = norm(pixel_colors).tolist()
     image = cv.cvtColor(image, cv.COLOR_RGB2HSV)
     h, s, v = cv.split(image)
-    axis.scatter(h.flatten(), s.flatten(), v.flatten(), facecolors=pixel_colors, marker=".")
+    axis.scatter(
+        h.flatten(), s.flatten(), v.flatten(), facecolors=pixel_colors, marker="."
+    )
     axis.set_xlabel("Hue")
     axis.set_ylabel("Saturation")
     axis.set_zlabel("Value")
@@ -203,14 +207,16 @@ def plot_3dLAB(image):
     fig = plt.figure()  # figsize=(15, 15)
     axis = fig.add_subplot(1, 1, 1, projection="3d")
     # Reshape it
-    pixel_colors = image.reshape((np.shape(image)[0]*np.shape(image)[1], 3))
-    norm = colors.Normalize(vmin=-1., vmax=1.)
+    pixel_colors = image.reshape((np.shape(image)[0] * np.shape(image)[1], 3))
+    norm = colors.Normalize(vmin=-1.0, vmax=1.0)
     # Normalize
     norm.autoscale(pixel_colors)
     pixel_colors = norm(pixel_colors).tolist()
     image = cv.cvtColor(image, cv.COLOR_RGB2LAB)
     l, a, b = cv.split(image)
-    axis.scatter(l.flatten(), a.flatten(), b.flatten(), facecolors=pixel_colors, marker=".")
+    axis.scatter(
+        l.flatten(), a.flatten(), b.flatten(), facecolors=pixel_colors, marker="."
+    )
     axis.set_xlabel("Lightness")
     axis.set_ylabel("a")
     axis.set_zlabel("b")
@@ -219,43 +225,56 @@ def plot_3dLAB(image):
 
 
 def show_rgb_hist(image):
-    colours = ('r', 'g', 'b')
-    pixel_colors = image.reshape((np.shape(image)[0]*np.shape(image)[1], 3))
+    colours = ("r", "g", "b")
+    pixel_colors = image.reshape((np.shape(image)[0] * np.shape(image)[1], 3))
     # print(pixel_colors)
-    norm = colors.Normalize(vmin=-1., vmax=1.)
+    norm = colors.Normalize(vmin=-1.0, vmax=1.0)
     pixel_colors = norm(pixel_colors).tolist()
 
     for i, c in enumerate(colours):
         plt.figure(figsize=(12, 4))
         histr = cv.calcHist([image], [i], None, [256], [0, 256])
         # print(histr)
-        if c == 'r':
-            colours = [(i/256, 0, 0) for i in range(0, 256)]
+        if c == "r":
+            colours = [(i / 256, 0, 0) for i in range(0, 256)]
         # print(colours)
-        if c == 'g':
-            colours = [((0, i/256, 0)) for i in range(0, 256)]
-        if c == 'b':
-            colours = [((0, 0, i/256)) for i in range(0, 256)]
+        if c == "g":
+            colours = [((0, i / 256, 0)) for i in range(0, 256)]
+        if c == "b":
+            colours = [((0, 0, i / 256)) for i in range(0, 256)]
         norm.autoscale(colours)
-        plt.bar(range(0, 256), histr.ravel(), color=norm(colours), edgecolor=norm(colours), width=2)
+        plt.bar(
+            range(0, 256),
+            histr.ravel(),
+            color=norm(colours),
+            edgecolor=norm(colours),
+            width=2,
+        )
         plt.tight_layout()
 
     plt.show()
 
+
 def show_hsv_hist(image):
     # Hue
     image = cv.cvtColor(image, cv.COLOR_RGB2HSV)
-    pixel_colors = image.reshape((np.shape(image)[0]*np.shape(image)[1], 3))
+    pixel_colors = image.reshape((np.shape(image)[0] * np.shape(image)[1], 3))
     # print(pixel_colors)
-    norm = colors.Normalize(vmin=-1., vmax=1.)
+    norm = colors.Normalize(vmin=-1.0, vmax=1.0)
     pixel_colors = norm(pixel_colors).tolist()
-    
+
     plt.figure(figsize=(12, 4))
     histr = cv.calcHist([image], [0], None, [180], [0, 180])
     plt.xlim([0, 180])
-    colours = [colors.hsv_to_rgb((i/180, 1, 1)) for i in range(0, 180)]
-    plt.bar(range(0, 180), histr.ravel(), color=norm(colours), edgecolor=norm(colours), width=1)
-    plt.title('Hue')
+    colours = [colors.hsv_to_rgb((i / 180, 1, 1)) for i in range(0, 180)]
+    plt.bar(
+        range(0, 180),
+        histr.ravel(),
+        color=norm(colours),
+        edgecolor=norm(colours),
+        width=1,
+    )
+    plt.title("Hue")
     plt.tight_layout()
 
     # Saturation
@@ -263,9 +282,15 @@ def show_hsv_hist(image):
     histr = cv.calcHist([image], [1], None, [256], [0, 256])
     plt.xlim([0, 256])
 
-    colours = [colors.hsv_to_rgb((0, i/256, 1)) for i in range(0, 256)]
-    plt.bar(range(0, 256), histr.ravel(), color=norm(colours), edgecolor=norm(colours), width=1)
-    plt.title('Saturation')
+    colours = [colors.hsv_to_rgb((0, i / 256, 1)) for i in range(0, 256)]
+    plt.bar(
+        range(0, 256),
+        histr.ravel(),
+        color=norm(colours),
+        edgecolor=norm(colours),
+        width=1,
+    )
+    plt.title("Saturation")
     plt.tight_layout()
 
     # Value
@@ -273,34 +298,47 @@ def show_hsv_hist(image):
     histr = cv.calcHist([image], [2], None, [256], [0, 256])
     plt.xlim([0, 256])
 
-    colours = [colors.hsv_to_rgb((0, 1, i/256)) for i in range(0, 256)]
-    plt.bar(range(0, 256), histr.ravel(), color=norm(colours), edgecolor=norm(colours), width=1)
-    plt.title('Value')
+    colours = [colors.hsv_to_rgb((0, 1, i / 256)) for i in range(0, 256)]
+    plt.bar(
+        range(0, 256),
+        histr.ravel(),
+        color=norm(colours),
+        edgecolor=norm(colours),
+        width=1,
+    )
+    plt.title("Value")
     plt.tight_layout()
     plt.show()
 
 
 # Threshold
 def plot_thresh_comparrison(image):
-    ret,th1 = cv.threshold(image,127,255,cv.THRESH_BINARY)
-    th2 = cv.adaptiveThreshold(image,255,cv.ADAPTIVE_THRESH_MEAN_C,\
-                cv.THRESH_BINARY,11,2)
-    th3 = cv.adaptiveThreshold(image,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C,\
-                cv.THRESH_BINARY,11,2)
-    titles = ['Original Image', 'Global Thresholding (v = 127)',
-                'Adaptive Mean Thresholding', 'Adaptive Gaussian Thresholding']
+    ret, th1 = cv.threshold(image, 127, 255, cv.THRESH_BINARY)
+    th2 = cv.adaptiveThreshold(
+        image, 255, cv.ADAPTIVE_THRESH_MEAN_C, cv.THRESH_BINARY, 11, 2
+    )
+    th3 = cv.adaptiveThreshold(
+        image, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 11, 2
+    )
+    titles = [
+        "Original Image",
+        "Global Thresholding (v = 127)",
+        "Adaptive Mean Thresholding",
+        "Adaptive Gaussian Thresholding",
+    ]
     images = [image, th1, th2, th3]
 
     plt.figure(figsize=(12, 12))
     for i in range(4):
-        plt.subplot(2,2,i+1),plt.imshow(images[i],'gray')
+        plt.subplot(2, 2, i + 1), plt.imshow(images[i], "gray")
         plt.title(titles[i])
-        plt.xticks([]),plt.yticks([])
+        plt.xticks([]), plt.yticks([])
         plt.tight_layout()
     plt.show()
 
+
 def segment_otsu(image):
-    image = cv.threshold(image, 0, 255, cv.THRESH_BINARY+cv.THRESH_OTSU)
+    image = cv.threshold(image, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
     return image[1]
 
 
@@ -309,13 +347,14 @@ def custom_gray(image, rgb_weights=np.array([1.3, 0.3, -0.8])):
     for i in range(image.shape[0]):
         for j in range(image.shape[1]):
             # create some kind of "plane"
-            graylevel = rgb_weights[0] * image[i][j][0] 
-            graylevel += rgb_weights[1] * image[i][j][1] 
+            graylevel = rgb_weights[0] * image[i][j][0]
+            graylevel += rgb_weights[1] * image[i][j][1]
             graylevel += rgb_weights[2] * image[i][j][2]
             graylevel = int(graylevel)
             # clip to avoid overflow
             grayimg[i][j] = np.clip(graylevel, 0, 255)
     return grayimg.astype(np.uint8)
+
 
 def overlay_mask(image, mask, alpha=0.5, beta=0.5):
     rgb_mask = cv.cvtColor(mask, cv.COLOR_GRAY2RGB)
