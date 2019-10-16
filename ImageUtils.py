@@ -156,6 +156,27 @@ def show_sobel(image):
     plt.show()
 
 
+def show_comparison(img, img2, cmap="viridis"):
+    plt.figure(figsize=(12, 16))
+    plt.subplot(121)
+    plt.axis("off")
+    plt.title("Image 1")
+
+    # check plot
+    if len(img.shape) == 3:
+        # Show image, with nearest neighbour interpolation
+        plt.imshow(img, interpolation="nearest")
+    else:
+        plt.imshow(img, interpolation="nearest", cmap="gray")
+
+    plt.subplot(122)
+    plt.axis("off")
+    plt.title("Image 2")
+    plt.imshow(img2, cmap=cmap)
+    plt.tight_layout()
+    plt.show()
+
+
 # 3D Plots
 def plot_3dRGB(image):
     # split RGB channels
