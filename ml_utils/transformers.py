@@ -4,6 +4,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.base import BaseEstimator, TransformerMixin
 from skimage.feature import hog
 
+
 class DeSkewTransformer(BaseEstimator, TransformerMixin):
     def __init__(self, size=28):
         self.size = size
