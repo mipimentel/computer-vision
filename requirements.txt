@@ -61,7 +61,7 @@ pandocfilters==1.4.2
 parso==0.5.1
 pexpect==4.7.0
 pickleshare==0.7.5
-Pillow==6.2.0
+Pillow==7.1.0
 pre-commit==1.18.3
 prometheus-client==0.7.1
 promise==2.2.1
@@ -76,8 +76,7 @@ pyparsing==2.4.2
 pyrsistent==0.15.4
 python-dateutil==2.8.0
 pytz==2019.3
-PyWavelets==1.0.3
-pywt==1.0.6
+PyWavelets==1.1.1
 PyYAML==5.1.2
 pyzmq==18.1.0
 qtconsole==4.5.5
