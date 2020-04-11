@@ -3,7 +3,7 @@ Some computer vision and machine learning algorithms organized in a more didacti
 
 ## Install
 
-It is recommended to create virtual environment with python 3.6 and using
+It is recommended to create virtual environment with python 3.7 and using
 [virtualenv](https://virtualenv.pypa.io) and [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io).
 
 To install the dependencies run:
